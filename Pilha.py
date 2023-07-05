@@ -39,15 +39,16 @@ class Pilha:
         
     def pop(self):
         if self.__topo == -1:
-            print("Não existem valores para serem removidos")
+            return "Nada para ser removido"
         else:
             self.__topo -= 1
             removido = self.__valores.pop(0)
             return removido
         
     def varios_pop(self, quant):
+        if self.__topo == -1:
+            return "Nada para ser removido"
         self.__valores = self.__valores[quant:]
-        print("Valores removidos com sucesso")
                   
     
 
