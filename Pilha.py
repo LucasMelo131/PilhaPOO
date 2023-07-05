@@ -34,5 +34,21 @@ class Pilha:
     def top(self):
         return self.__valores[0]
     
-    def imprimir(self):
+    def imprimir(self): 
         print(self.__valores)
+        
+    def pop(self):
+        if self.__topo == -1:
+            print("Não existem valores para serem removidos")
+        else:
+            self.__topo -= 1
+            removido = self.__valores.pop(0)
+            return removido
+        
+    def varios_pop(self, quant):
+        self.__valores = self.__valores[quant:]
+        print("Valores removidos com sucesso")
+                  
+    
+
+        
