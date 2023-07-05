@@ -49,6 +49,10 @@ class Pilha:
         if self.__topo == -1:
             return "Nada para ser removido"
         self.__valores = self.__valores[quant:]
+        self.__topo -= quant
+        if self.__topo < -1:
+            self.__topo = -1
+            
                   
     
 
