@@ -76,6 +76,3 @@ class Pilha:
         if self.vazia():
             return "está vazia"
         return self.__valores[0]
-    
-    def imprimir(self):
-        print(self.__valores)
