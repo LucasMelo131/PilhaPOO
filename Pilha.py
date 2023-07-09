@@ -1,5 +1,3 @@
-from copy import deepcopy
-
 class Pilha:
 
     #Construtor da classe pilha com os atributos privados
