@@ -1,15 +1,15 @@
 from Pilha import Pilha
 
 class Principal:
+  
+    def __init__(self):
+        self.__pilha1 = Pilha()
+        #self.__pilha2 = Pilha()
 
     def main(self):
-        self.pilha1 = Pilha()
-        
-        self.pilha1.varios_push(10, 20, 30)
-        self.pilha1.imprimir()
-        self.pilha1.varios_pop(2)
-        print(self.pilha1.top())
-
+        #self.__pilha1 = Pilha()
+        self.__pilha1.big_push(1,2,3,5,7,8,9,10,11,19,20)
+        self.__pilha1.imprimir()
 
 teste = Principal()
 teste.main()
