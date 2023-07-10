@@ -1,78 +1,85 @@
+from multimethod import overload #Usar o comando pip install multimethod no terminal
+
 class Pilha:
 
     #Construtor da classe pilha com os atributos privados
     def __init__(self):
-        self.__TAM_MAX = 5
+        self.__TAM_MAX = 10
         self.__valores = []
         self.__topo = -1
 
     #Método que verifica se a pilha está vazia
-    def vazia(self):
+    def empty(self):
         return self.__topo == -1
 
     #Insere um valor no topo da pilha (retorna True caso consiga inserir)
-    def push(self,valor):
+    @overload
+    def push(self, valor):
         if self.__topo == self.__TAM_MAX - 1:
-            return "Pilha cheia, o valor " + str(valor) + " não pode ser inserido"
-        self.__valores.insert(0,valor)
+            return None
+        self.__valores.insert(0, valor)
         self.__topo += 1
         return None
 
     #Insere vários valores na pilha (um por um)
-    def big_push(self,*valores):
+    @overload
+    def push(self,*valores):
         for valor in valores:
             if self.__topo == self.__TAM_MAX - 1:
-                return "Pilha cheia, o valor " + str(valor) + " não pode ser inserido e nem os demais"
-            self.__valores.insert(0,valor)
+                return None
+            self.__valores.insert(0, valor)
             self.__topo += 1
         return None
-
+    
     #Empilhar uma pilha em outra (criamos uma cópia da pilha de origem
     #para respeitar o princípio de imutabilidade :) )
 
     def pilha_push(self,origem):
         #cria a copia de uma pilha p/ outra variavel
-        def __copia(pilha):
+         def __copia(pilha):
             nova_pilha = Pilha()
-            aux = []
-            while not(pilha.vazia()):
+            temp = []
+            while not(pilha.empty()):
                 curr = pilha.pop()
-                aux.insert(0,curr)
-            for elem in aux:
+                temp.insert(0,curr)
+            for elem in temp:
                 pilha.push(elem)
                 nova_pilha.push(elem)
             return nova_pilha
 
-        aux = __copia(origem)
+         aux = __copia(origem)
         #empilha na pilha de destino
-        while not aux.vazia():
-            curr = aux.pop()
+         while not aux.empty():
             if self.__topo == self.__TAM_MAX - 1:
-                return "Pilha cheia, o valor " + str(curr) + " não pode ser inserido e nem os demais"
-            self.__valores.insert(0,curr)
+                return None
+            curr = aux.pop()
+            self.__valores.insert(0, curr)
             self.__topo += 1
-        return None
+         return None
 
     #Remove o elemento do topo da pilha, se ela não estiver vazia
+    @overload
     def pop(self):
-        if self.vazia():
-            return "Nada para ser removido, a pilha está vazia"
+        if self.empty():
+            return None
         self.__topo -= 1
         removido = self.__valores.pop(0)
         return removido
 
     #Remove n elementos da pilha (especificado como parâmetro da função)
     #Se n > tam da pilha, esvazia a pilha
-    def big_pop(self, quant):
-        if self.vazia():
-            return "Nada para ser removido"
+    @overload
+    def pop(self,quant):
+        if self.empty():
+            return None
         self.__valores = self.__valores[quant:]
         self.__topo -= quant
         if self.__topo < -1:
             self.__topo = -1
+        return None
 
     #Retorna o topo da pilha
     def top(self):
-        if self.vazia():
-            return "está vazia"
+        if self.empty():
+            return "Vazio"
         return self.__valores[0]
