@@ -26,8 +26,11 @@ class Principal:
         self.__pilha1.pop(2)
         print("O topo da pilha 1 após as remoções é:",self.__pilha1.top())
 
+    def chama_teste(self):
+        self.teste()
+        print("------------------------------------------")
+        self.outro_teste()
+
 
 teste = Principal()
-teste.teste()
-print("------------------------------------------")
-teste.outro_teste()
+teste.chama_teste()
