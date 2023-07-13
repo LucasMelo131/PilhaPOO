@@ -12,7 +12,7 @@ class Pilha:
     def empty(self):
         return self.__topo == -1
 
-    #Insere um valor no topo da pilha (retorna True caso consiga inserir)
+    #Insere um valor no topo da pilha 
     @overload
     def push(self, valor):
         if self.__topo == self.__TAM_MAX - 1:
